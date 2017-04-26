@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_room.c                                          :+:      :+:    :+:   */
+/*   ft_check_link.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/21 12:14:23 by tferrari          #+#    #+#             */
-/*   Updated: 2017/04/26 15:24:32 by tferrari         ###   ########.fr       */
+/*   Created: 2017/04/26 18:15:32 by tferrari          #+#    #+#             */
+/*   Updated: 2017/04/26 19:20:36 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "lem_in.h"
+#include "libft.h"
 #include "ft_printf.h"
 
-int				ft_room(char *text, t_lem *lem, t_lst *lst)
+void			ft_inti_lstl(&lstl)
 {
-	int		i;
-	int		x;
-	int		y;
-	char	*tmp;
+	lstl->link1 = NULL;
+	lstl->link2 = NULL;
+	lstl->first = NULL;
+}
 
-	i = ft_strclen(text, ' ');
-	if (!(tmp = ft_strnew(i)))
+int				ft_check_link(t_lstl lstl, char *text, t_lem *lem)
+{
+	char	*tmp1;
+	char	*tmp2;
+	int		i;
+
+	i = ft_strclen(text, '-');
+	if (!(tmp1 = ft_strnew(i)))
 		return (0);
-	if (lem || lst)
-		;
-	tmp = ft_strncat(tmp, text, i);
+	tmp1 = ft_strncat(tmp1, text, i);
 	i++;
-	x = ft_atoi(text + i);
-	i++;
-	y = ft_atoi(text + i + ft_intlen(x));
-	if (!ft_lstnewroom(lst, tmp, x, y))
+	if (!(tmp2 = ft_strnew(ft_strlen(text + i))))
 		return (0);
-	if (tmp)
-		ft_memdel((void **)&tmp);
+	tmp2 = ft_strcat(tmp2, text + i);
 	return (1);
 }
