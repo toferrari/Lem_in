@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 19:37:12 by tferrari          #+#    #+#             */
-/*   Updated: 2017/04/26 17:57:56 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/04/28 15:11:20 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void			ft_inti_lst(t_lst *lst)
 	lst->room = NULL;
 	lst->x = 0;
 	lst->y = 0;
+	lst->start = 0;
+	lst->end = 0;
 	lst->first = NULL;
 }
 
-int				ft_lstnewroom(t_lst *lst, char *content, int x, int y)
+int				ft_lstnewroom(t_lst *lst, char *content, t_lem *lem)
 {
 	t_elem *elem;
 
@@ -33,8 +35,18 @@ int				ft_lstnewroom(t_lst *lst, char *content, int x, int y)
 		if (!(elem->room = ft_strnew(ft_strlen(content))))
 			return (0);
 		elem->room = ft_strcpy(elem->room, content);
-		elem->x = x;
-		elem->y = y;
+		elem->x = lem->x;
+		elem->y = lem->y;
+		if (lem->start == 2)
+		{
+			elem->start = 1;
+			lem->start = 3;
+		}
+		else if (lem->end == 2)
+		{
+			elem->end = 1;
+			lem->end = 3;
+		}
 	}
 	else
 		return (0);

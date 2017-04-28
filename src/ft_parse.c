@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 16:13:02 by tferrari          #+#    #+#             */
-/*   Updated: 2017/04/26 18:27:20 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/04/28 14:35:14 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ int			ft_parse(char *text, t_lem *lem, t_lst *lst, t_lstl *lstl)
 	if (lem->check == 1)
 		return (ft_room(text, lem, lst));
 	else if (lem->check == 2)
-		return (ft_check_link(lstl, text, lem));
-	return (2);
+		return (ft_check_link(lstl, text, lem, lst));
+	return (lem->check);
 }

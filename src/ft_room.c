@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:14:23 by tferrari          #+#    #+#             */
-/*   Updated: 2017/04/26 15:24:32 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/04/28 14:59:26 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 int				ft_room(char *text, t_lem *lem, t_lst *lst)
 {
 	int		i;
-	int		x;
-	int		y;
 	char	*tmp;
 
 	i = ft_strclen(text, ' ');
@@ -28,10 +26,10 @@ int				ft_room(char *text, t_lem *lem, t_lst *lst)
 		;
 	tmp = ft_strncat(tmp, text, i);
 	i++;
-	x = ft_atoi(text + i);
+	lem->x = ft_atoi(text + i);
 	i++;
-	y = ft_atoi(text + i + ft_intlen(x));
-	if (!ft_lstnewroom(lst, tmp, x, y))
+	lem->y = ft_atoi(text + i + ft_intlen(lem->x));
+	if (!ft_lstnewroom(lst, tmp, lem))
 		return (0);
 	if (tmp)
 		ft_memdel((void **)&tmp);

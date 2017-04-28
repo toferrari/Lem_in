@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 14:47:54 by tferrari          #+#    #+#             */
-/*   Updated: 2017/04/26 17:54:59 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/04/28 14:46:08 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,10 @@ void			ft_check_parse(char *text, t_lem *lem)
 		ft_command(lem);
 	}
 	else if (lem->check == 2 && nb == 1)
-		ft_link(text, lem);
+	{
+		if (lem->start == 2 && lem->end == 2)
+			ft_link(text, lem);
+		else
+			lem->check = 3;
+	}
 }
