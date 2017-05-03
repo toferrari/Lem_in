@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_room.c                                          :+:      :+:    :+:   */
+/*   ft_print_lst.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/21 12:14:23 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/02 15:22:29 by tferrari         ###   ########.fr       */
+/*   Created: 2017/05/02 17:05:05 by tferrari          #+#    #+#             */
+/*   Updated: 2017/05/03 14:49:50 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "lem_in.h"
+#include "libft.h"
 #include "ft_printf.h"
 
-int				ft_room(char *text, t_lem *lem, t_room *room)
+void		ft_printlstl(t_tube *tube)
 {
-	int		i;
-	char	*tmp;
+	while (tube->next)
+	{
+		ft_printf("il y a un lien entre la salle : %s et la salle %s\n");
+		tube = tube->next;
+	}
+}
 
-	i = ft_strclen(text, ' ');
-	if (!(tmp = ft_strnew(i)))
-		return (0);
-	tmp = ft_strncat(tmp, text, i);
-	if (!ft_lstnewroom(room, tmp, lem))
-		return (0);
-	if (tmp)
-		ft_memdel((void **)&tmp);
-	return (1);
+void			ft_printlst(t_room *room)
+{
+	while (room && room->next)
+	{
+		ft_printf("\nnom de salle : %s\n", room->name);
+		room = room->next;
+	}
 }

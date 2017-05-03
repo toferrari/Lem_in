@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 16:13:02 by tferrari          #+#    #+#             */
-/*   Updated: 2017/04/28 14:35:14 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/02 15:22:34 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	ft_instruction(char *text, t_lem *lem)
 	return (1);
 }
 
-int			ft_parse(char *text, t_lem *lem, t_lst *lst, t_lstl *lstl)
+int			ft_parse(char *text, t_lem *lem, t_room *room)
 {
 	if (lem->check > 0 && (text[0] == 'L' || text[0] == '\0'))
 		return (2);
@@ -50,8 +50,8 @@ int			ft_parse(char *text, t_lem *lem, t_lst *lst, t_lstl *lstl)
 		return (1);
 	ft_check_parse(text, lem);
 	if (lem->check == 1)
-		return (ft_room(text, lem, lst));
+		return (ft_room(text, lem, room));
 	else if (lem->check == 2)
-		return (ft_check_link(lstl, text, lem, lst));
+		return (1);
 	return (lem->check);
 }

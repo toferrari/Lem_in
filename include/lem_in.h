@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:19:18 by tferrari          #+#    #+#             */
-/*   Updated: 2017/04/28 15:02:40 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/02 15:25:51 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,54 +23,30 @@ typedef	struct	s_lem
 	char		*order;
 	int			ret;
 	int			parse;
-	int			x;
-	int			y;
 }				t_lem;
 
-typedef	struct	s_elem
+typedef struct		s_room
 {
-	char				*room;
-	int					y;
-	int					x;
-	int					start;
-	int					end;
-	struct s_elem		*next;
-}				t_elem;
+	char			*name;
+	int				pos;
+	struct s_tube	*tube;
+	struct s_room	*next;
+}					t_room;
 
-typedef	struct	s_lst
+typedef struct		s_tube
 {
-	char				*room;
-	int					y;
-	int					x;
-	int					start;
-	int					end;
-	struct s_elem		*first;
-}				t_lst;
+	struct s_room	*salle;
+	struct s_tube	*next;
+}					t_tube;
 
-
-typedef	struct	s_eleml
-{
-	char				*link1;
-	char				*link2;
-	struct s_eleml		*next;
-}				t_eleml;
-
-typedef	struct	s_lstl
-{
-	char				*link1;
-	char				*link2;
-	struct s_eleml		*first;
-}				t_lstl;
-
-
-int				ft_parse(char *text, t_lem *lem, t_lst *list, t_lstl *lstl);
+int				ft_parse(char *text, t_lem *lem, t_room *room);
 void			ft_check_parse(char * test, t_lem *lem);
-void			ft_inti_lst(t_lst *lst);
-void			ft_inti_lstl(t_lstl *lstl);
-int				ft_lstnewroom(t_lst *lst, char *content, t_lem *lem);
-void			ft_printlst(t_lst *lst);
-void			ft_printlstl(t_lstl *lstl);
-int				ft_room(char *text, t_lem *lem, t_lst *lst);
-int				ft_check_link(t_lstl *lstl, char *text, t_lem *lem, t_lst *lst);
+t_room			*ft_init_room();
+t_tube			*ft_init_tube();
+int				ft_lstnewroom(t_room *room, char *name, t_lem *lem);
+void			ft_printlst(t_room *room);
+//void			ft_printlstl(t_lstl *lstl);
+int				ft_room(char *text, t_lem *lem, t_room *room);
+int				ft_add_link(t_tube *tube, char *text, t_lem *lem, t_room *room);
 
 #endif

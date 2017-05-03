@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 18:15:32 by tferrari          #+#    #+#             */
-/*   Updated: 2017/04/27 16:16:01 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/02 17:39:05 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,72 +14,69 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void			ft_inti_lstl(t_lstl *lstl)
+t_tube			*ft_init_tube()
 {
-	lstl->link1 = NULL;
-	lstl->link2 = NULL;
-	lstl->first = NULL;
+	t_tube *tube;
+
+	if (!(tube = (t_tube *)malloc(sizeof(t_tube))))
+		return (NULL);
+	tube->salle = NULL;
+	tube->next = NULL;
+	return (tube);
 }
 
-static int		ft_lst_link(t_lstl *lstl, char *tmp1, char *tmp2)
+static int		ft_lst_link(t_tube *tube, char *tmp1, char *tmp2, t_room *room)
 {
-	t_eleml *eleml;
+	t_room	*tmp;
 
-	if (!(eleml = (t_eleml *)malloc(sizeof(t_eleml))))
-		return (0);
-	if (!(eleml->link1 = ft_strnew(ft_strlen(tmp1))) ||
-	!(eleml->link2 = ft_strnew(ft_strlen(tmp2))))
-		return (0);
-	eleml->link1 = ft_strcpy(eleml->link1, tmp1);
-	eleml->link2 = ft_strcpy(eleml->link2, tmp2);
-	eleml->next = lstl->first;
-	lstl->first = eleml;
+	tmp = room;
+	while (tube && tube->next)
+		tube = tube->next;
+	while (!ft_strcmp(tmp1, room->name))
+		room = room->next;
+	
 	return (1);
 }
 
-int				ft_check_link(t_lstl *lstl, char *text, t_lem *lem, t_lst *lst)
+static int		ft_tmp(char **tmp1, char **tmp2, char *text)
 {
-	char	*tmp1;
-	char	*tmp2;
-	t_elem	*elem;
 	int		i;
 
 	i = ft_strclen(text, '-');
-	if (text[i] == '\0' || !(tmp1 = ft_strnew(i)))
+	if (text[i] == '\0' || !(*tmp1 = ft_strnew(i)))
 		return (0);
-	tmp1 = ft_strncat(tmp1, text, i);
+	*tmp1 = ft_strncat(*tmp1, text, i);
 	i++;
-	if (!(tmp2 = ft_strnew(ft_strlen(text + i))))
+	if (!(*tmp2 = ft_strnew(ft_strlen(text + i))))
 		return (0);
-	tmp2 = ft_strcat(tmp2, text + i);
-	if (!ft_strcmp(tmp1, tmp2))
+	*tmp2 = ft_strcat(*tmp2, text + i);
+	if (!ft_strcmp(*tmp1, *tmp2))
 		return (0);
-	elem = lst->first;
+	return (1);
+}
+
+int				ft_add_link(t_tube *tube, char *text, t_lem *lem, t_room *room)
+{
+	char	*tmp1;
+	char	*tmp2;
+	t_room	*tmp;
+	int		i;
+
+	if (!ft_tmp(&tmp1, &tmp2, text))
+		return (0);
 	i = 0;
-	while (elem)
+	tmp = room;
+	while (tmp->next)
 	{
-		if (!ft_strcmp(tmp1, elem->room) || !ft_strcmp(tmp2, elem->room))
+		if (!ft_strcmp(tmp1, room->name) || !ft_strcmp(tmp2, room->name))
 			i++;
-		elem = elem->next;
+		tmp = tmp->next;
 	}
 	if (i != 2)
 		return (2);
-	if (!ft_lst_link(lstl, tmp1, tmp2))
+	if (!ft_lst_link(tube, tmp1, tmp2, room))
 		return (0);
 	if (lem)
 		;
 	return (1);
-}
-
-void		ft_printlstl(t_lstl *lstl)
-{
-	t_eleml *eleml;
-
-	eleml = lstl->first;
-	while (eleml)
-	{
-		ft_printf("il y a un lien entre la salle : %s et la salle %s\n",
-		eleml->link1, eleml->link2);
-		eleml = eleml->next;
-	}
 }
