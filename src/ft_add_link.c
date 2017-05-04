@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_link.c                                    :+:      :+:    :+:   */
+/*   ft_add_link.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 18:15:32 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/02 17:39:05 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/04 17:36:52 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,49 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-t_tube			*ft_init_tube()
+static int		ft_link1(t_tube *tube, t_room *tmp2)
 {
-	t_tube *tube;
-
-	if (!(tube = (t_tube *)malloc(sizeof(t_tube))))
-		return (NULL);
-	tube->salle = NULL;
+	if (tube->salle != NULL)
+	{
+		while (tube->next)
+			tube = tube->next;
+		if (!(tube->next = (t_tube *)malloc(sizeof(t_tube))))
+			return (0);
+		tube = tube->next;
+	}
+	tube->salle = tmp2;
 	tube->next = NULL;
-	return (tube);
+	return (1);
 }
 
-static int		ft_lst_link(t_tube *tube, char *tmp1, char *tmp2, t_room *room)
+static int		ft_link2(t_tube *tube, t_room *tmp)
+{
+	if (tube->salle)
+	{
+		while (tube->next)
+			tube = tube->next;
+		if (!(tube->next = (t_tube *)malloc(sizeof(t_tube))))
+			return (0);
+		tube = tube->next;
+	}
+	tube->salle = tmp;
+	tube->next = NULL;
+	return (1);
+}
+
+static int		ft_lst_link(char *ch1, char *ch2, t_room *room)
 {
 	t_room	*tmp;
+	t_room	*tmp2;
 
 	tmp = room;
-	while (tube && tube->next)
-		tube = tube->next;
-	while (!ft_strcmp(tmp1, room->name))
-		room = room->next;
-	
+	tmp2 = room;
+	while (ft_strcmp(ch1, tmp->name))
+		tmp = tmp->next;
+	while (ft_strcmp(ch2, tmp2->name))
+		tmp2 = tmp2->next;
+	if (!ft_link1(tmp->tube, tmp2) || !ft_link2(tmp2->tube, tmp))
+		return (0);
 	return (1);
 }
 
@@ -55,7 +77,7 @@ static int		ft_tmp(char **tmp1, char **tmp2, char *text)
 	return (1);
 }
 
-int				ft_add_link(t_tube *tube, char *text, t_lem *lem, t_room *room)
+int				ft_add_link(char *text, t_lem *lem, t_room *room)
 {
 	char	*tmp1;
 	char	*tmp2;
@@ -66,15 +88,15 @@ int				ft_add_link(t_tube *tube, char *text, t_lem *lem, t_room *room)
 		return (0);
 	i = 0;
 	tmp = room;
-	while (tmp->next)
+	while (tmp)
 	{
-		if (!ft_strcmp(tmp1, room->name) || !ft_strcmp(tmp2, room->name))
+		if (!ft_strcmp(tmp1, tmp->name) || !ft_strcmp(tmp2, tmp->name))
 			i++;
 		tmp = tmp->next;
 	}
 	if (i != 2)
 		return (2);
-	if (!ft_lst_link(tube, tmp1, tmp2, room))
+	if (!ft_lst_link(tmp1, tmp2, room))
 		return (0);
 	if (lem)
 		;

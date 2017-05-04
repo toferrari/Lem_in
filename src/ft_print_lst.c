@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 17:05:05 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/03 14:49:50 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/04 17:36:19 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,31 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void		ft_printlstl(t_tube *tube)
+void			ft_printlink(t_room *room)
 {
-	while (tube->next)
+	t_room	*tmp;
+
+	tmp = room;
+	while (tmp->tube->next)
 	{
-		ft_printf("il y a un lien entre la salle : %s et la salle %s\n");
-		tube = tube->next;
+		ft_printf("il y a un lien entre la salle : %s et la salle %s\n",
+		tmp->name, room->tube->salle->name);
+		tmp->tube = tmp->tube->next;
 	}
 }
 
-void			ft_printlst(t_room *room)
+void			ft_printroom(t_room *room)
 {
-	while (room && room->next)
+	while (room)
 	{
 		ft_printf("\nnom de salle : %s\n", room->name);
+		while (room->tube)
+		{
+			if (room->tube->salle)
+				ft_printf("\nlien entre la salle : %s et la salle : %s\n",
+				room->name, room->tube->salle->name);
+			room->tube = room->tube->next;
+		}
 		room = room->next;
 	}
 }

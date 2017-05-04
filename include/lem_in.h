@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:19:18 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/02 15:25:51 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/04 13:52:14 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ typedef struct		s_tube
 int				ft_parse(char *text, t_lem *lem, t_room *room);
 void			ft_check_parse(char * test, t_lem *lem);
 t_room			*ft_init_room();
-t_tube			*ft_init_tube();
+t_tube			*ft_init_tube(t_tube *tube);
 int				ft_lstnewroom(t_room *room, char *name, t_lem *lem);
-void			ft_printlst(t_room *room);
-//void			ft_printlstl(t_lstl *lstl);
+void			ft_printroom(t_room *room);
+void			ft_printlink(t_room *room);
 int				ft_room(char *text, t_lem *lem, t_room *room);
-int				ft_add_link(t_tube *tube, char *text, t_lem *lem, t_room *room);
+int				ft_add_link( char *text, t_lem *lem, t_room *room);
 
 #endif

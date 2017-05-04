@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 19:37:12 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/02 17:07:15 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/04 17:39:50 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,25 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-t_room		*ft_init_room()
+t_tube			*ft_init_tube(t_tube *tube)
+{
+	if (!(tube = (t_tube *)malloc(sizeof(t_tube))))
+		return (NULL);
+	tube->salle = NULL;
+	tube->next = NULL;
+	return (tube);
+}
+
+t_room			*ft_init_room(void)
 {
 	t_room *room;
 
-	if (!(room = (t_room *)malloc(sizeof(t_room))))
+	if (!(room = (t_room *)malloc(sizeof(t_room))) ||
+	(!(room->tube = ft_init_tube(room->tube))))
 		return (NULL);
 	room->name = NULL;
 	room->pos = 0;
 	room->next = NULL;
-	room->tube = NULL;
 	return (room);
 }
 
@@ -37,22 +46,16 @@ int				ft_lstnewroom(t_room *room, char *name, t_lem *lem)
 			return (0);
 		room = room->next;
 	}
-	if (!(room->name = ft_strnew(ft_strlen(name))))
-			return (0);
+	if (!(room->name = ft_strnew(ft_strlen(name))) ||
+	(!(room->tube = ft_init_tube(room->tube))))
+		return (0);
 	room->name = ft_strcpy(room->name, name);
 	if (lem->start == 2)
-	{
 		room->pos = 1;
-		lem->start = 3;
-	}
 	else if (lem->end == 2)
-	{
 		room->pos = 2;
-		lem->end = 3;
-	}
 	else
 		room->pos = 0;
-	room->tube = NULL;
 	room->next = NULL;
 	return (1);
 }
