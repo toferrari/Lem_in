@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 18:15:32 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/04 17:36:52 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/09 17:38:33 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@
 
 static int		ft_link1(t_tube *tube, t_room *tmp2)
 {
+	t_tube *temp;
 	if (tube->salle != NULL)
 	{
 		while (tube->next)
 			tube = tube->next;
 		if (!(tube->next = (t_tube *)malloc(sizeof(t_tube))))
 			return (0);
+		temp = tube;
 		tube = tube->next;
+		tube->prev = temp;
 	}
 	tube->salle = tmp2;
 	tube->next = NULL;
@@ -31,13 +34,16 @@ static int		ft_link1(t_tube *tube, t_room *tmp2)
 
 static int		ft_link2(t_tube *tube, t_room *tmp)
 {
+	t_tube *temp;
 	if (tube->salle)
 	{
 		while (tube->next)
 			tube = tube->next;
 		if (!(tube->next = (t_tube *)malloc(sizeof(t_tube))))
 			return (0);
+		temp = tube;
 		tube = tube->next;
+		tube->prev = temp;
 	}
 	tube->salle = tmp;
 	tube->next = NULL;
