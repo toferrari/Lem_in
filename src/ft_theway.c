@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 10:35:15 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/10 10:30:21 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/10 18:07:48 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,38 @@
 #include "libft.h"
 #include "ft_printf.h"
 
+static void	ft_first_tube(t_room *room, int i)
+{
+	if (i == 1)
+	{
+		while (room)
+		{
+			room->first_tube = room->tube;
+			room = room->next;
+		}
+	}
+	else
+	{
+		while (room)
+		{
+			room->tube = room->first_tube;
+			room = room->next;
+		}
+	}
+}
+
 int			ft_theway(t_room *room)
 {
 	t_room	*begin;
 	t_room	*tmp;
 
 	tmp = room;
+	ft_first_tube(room, 1);
 	while (room->pos != 1)
 		room = room->next;
 	begin = room;
 	if (room->tube == NULL)
 		return (0);
-	ft_printf("passe\n");
 	while(room && room->pos != 2)
 	{
 		if (room->pos == 1 && room->tube == NULL)
@@ -60,18 +80,7 @@ int			ft_theway(t_room *room)
 	}
 	ft_printf("END = \033[31m%s\033[0m", room->name);
 	room = begin;
-	while (room)
-	{
-		//printf("salle %s\n", room->name);
-		while (room->tube && room->tube->prev)
-		{
-		//	printf("tube %s\n", room->tube->salle->name);
-			room->tube = room->tube->prev;
-		//	printf("prev %s\n", room->tube->salle->name);
-		}
-		room = room->next;
-	}
-	room = begin;
+	ft_first_tube(room, 0);
 	// ft_printf("pointeur = \033[32m%s\033[0m\n", room->tube->salle->name);
 	return (1);
 }

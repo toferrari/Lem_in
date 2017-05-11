@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:18:10 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/10 10:59:49 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/10 18:07:12 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int				main(int argc, char **argv)
 	if (!ft_theway(room))
 		return (ft_error(6));
 	//ft_print_ants(room);
-	//ft_printf("\n\nnom de la salle : %s\n", room->name);
 	ft_printroom(room);
 	return (0);
 }

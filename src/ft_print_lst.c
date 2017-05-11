@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 17:05:05 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/09 18:02:24 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/11 09:44:13 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,13 @@ void			ft_printlink(t_room *room)
 
 void			ft_printroom(t_room *room)
 {
-	printf("toto\n");
 	while (room)
 	{
 		ft_printf("\nnom de salle : %s\n", room->name);
 		while (room->tube)
 		{
 			if (room->tube->salle)
-				ft_printf("\nlink : %s\n", room->tube->salle->name);
+				ft_printf("link : %s\n", room->tube->salle->name);
 			room->tube = room->tube->next;
 		}
 		room = room->next;

@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 18:15:32 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/09 17:38:33 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/10 18:04:58 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 static int		ft_link1(t_tube *tube, t_room *tmp2)
 {
 	t_tube *temp;
+
 	if (tube->salle != NULL)
 	{
 		while (tube->next)
@@ -35,6 +36,7 @@ static int		ft_link1(t_tube *tube, t_room *tmp2)
 static int		ft_link2(t_tube *tube, t_room *tmp)
 {
 	t_tube *temp;
+
 	if (tube->salle)
 	{
 		while (tube->next)
@@ -83,19 +85,19 @@ static int		ft_tmp(char **tmp1, char **tmp2, char *text)
 	return (1);
 }
 
-int				ft_add_link(char *text, t_lem *lem, t_room *room)
+int				ft_add_link(char *text, t_room *room)
 {
 	char	*tmp1;
 	char	*tmp2;
 	t_room	*tmp;
 	int		i;
-
 	if (!ft_tmp(&tmp1, &tmp2, text))
 		return (0);
 	i = 0;
 	tmp = room;
 	while (tmp)
 	{
+		//ft_printf("tmp1 = %s, tmp->name = %s\n", tmp1, tmp->name);
 		if (!ft_strcmp(tmp1, tmp->name) || !ft_strcmp(tmp2, tmp->name))
 			i++;
 		tmp = tmp->next;
@@ -104,7 +106,9 @@ int				ft_add_link(char *text, t_lem *lem, t_room *room)
 		return (2);
 	if (!ft_lst_link(tmp1, tmp2, room))
 		return (0);
-	if (lem)
-		;
+	if (tmp1)
+		ft_memdel((void **)&tmp1);
+	if (tmp2)
+		ft_memdel((void **)&tmp2);
 	return (1);
 }

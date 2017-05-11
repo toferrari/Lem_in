@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:19:18 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/09 17:32:23 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/11 10:47:49 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ typedef struct		s_room
 {
 	char			*name;
 	int				pos;
+	int				ant;
 	int				way;
 	struct s_tube	*tube;
 	struct s_room	*next;
+	struct s_tube	*first_tube;
 }					t_room;
 
 typedef struct		s_tube
@@ -49,7 +51,7 @@ int				ft_lstnewroom(t_room *room, char *name, t_lem *lem);
 void			ft_printroom(t_room *room);
 void			ft_printlink(t_room *room);
 int				ft_room(char *text, t_lem *lem, t_room *room);
-int				ft_add_link( char *text, t_lem *lem, t_room *room);
+int				ft_add_link(char *text, t_room *room);
 int				ft_theway(t_room *room);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 19:37:12 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/09 17:38:50 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/11 10:47:45 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ t_room			*ft_init_room(void)
 	room->name = NULL;
 	room->pos = 0;
 	room->way = 0;
+	room->ant = 0;
 	room->next = NULL;
+	room->first_tube = NULL;
 	return (room);
 }
 
@@ -59,6 +61,8 @@ int				ft_lstnewroom(t_room *room, char *name, t_lem *lem)
 	else
 		room->pos = 0;
 	room->way = 0;
+	room->ant = 0;
 	room->next = NULL;
+	room->first_tube = NULL;
 	return (1);
 }
