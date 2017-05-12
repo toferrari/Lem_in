@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:19:18 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/11 10:47:49 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/11 19:49:45 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 typedef	struct	s_lem
 {
 	int			ants;
+	int			ant_start;
+	int			ants_end;
 	int			start;
 	int			end;
 	int			line;
@@ -43,6 +45,12 @@ typedef struct		s_tube
 	struct s_tube	*prev;
 }					t_tube;
 
+typedef struct		s_way
+{
+	struct s_room	*p;
+	struct s_way	*next;
+}					t_way;
+
 int				ft_parse(char *text, t_lem *lem, t_room *room);
 void			ft_check_parse(char * test, t_lem *lem);
 t_room			*ft_init_room();
@@ -53,5 +61,8 @@ void			ft_printlink(t_room *room);
 int				ft_room(char *text, t_lem *lem, t_room *room);
 int				ft_add_link(char *text, t_room *room);
 int				ft_theway(t_room *room);
+t_way			*ft_init_way();
+int				ft_way_ants(t_room *room, t_way *way);
+void			ft_print_ants(t_way *way, t_lem *lem);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 10:35:15 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/10 18:07:48 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:17:26 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ int			ft_theway(t_room *room)
 			room = begin;
 		}
 	}
-	ft_printf("END = \033[31m%s\033[0m", room->name);
+	room->way = 1;
+	ft_printf("END = \033[31m%s\033[0m\n", room->name);
 	room = begin;
 	ft_first_tube(room, 0);
 	// ft_printf("pointeur = \033[32m%s\033[0m\n", room->tube->salle->name);

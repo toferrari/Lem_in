@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 17:05:05 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/11 09:44:13 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:16:44 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void			ft_printroom(t_room *room)
 	while (room)
 	{
 		ft_printf("\nnom de salle : %s\n", room->name);
+		ft_printf("poid de passage : %d\n", room->way);
 		while (room->tube)
 		{
 			if (room->tube->salle)

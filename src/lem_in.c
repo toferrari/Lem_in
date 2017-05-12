@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:18:10 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/10 18:07:12 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/11 19:49:21 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ int				main(int argc, char **argv)
 {
 	t_lem	lem;
 	t_room	*room;
+	t_way	*way;
 
 	ft_bzero(&lem, sizeof(lem));
 	if (argv || argc)
 		;
 	room = ft_init_room();
+	way = ft_init_way();
 	while ((lem.ret = get_next_line(0, &lem.order)) == 1)
 	{
 		lem.parse = ft_parse(lem.order, &lem, room);
@@ -55,7 +57,8 @@ int				main(int argc, char **argv)
 	}
 	if (!ft_theway(room))
 		return (ft_error(6));
-	//ft_print_ants(room);
-	ft_printroom(room);
+	ft_way_ants(room, way);
+	ft_print_ants(way, &lem);
+	//  ft_printroom(room);
 	return (0);
 }
