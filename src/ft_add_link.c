@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 18:15:32 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/10 18:04:58 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/15 18:39:09 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,14 @@ static int		ft_lst_link(char *ch1, char *ch2, t_room *room)
 	tmp2 = room;
 	while (ft_strcmp(ch1, tmp->name))
 		tmp = tmp->next;
+	if (tmp->tube == NULL)
+		if (!(tmp->tube = ft_init_tube(tmp->tube)))
+			return (0);
 	while (ft_strcmp(ch2, tmp2->name))
 		tmp2 = tmp2->next;
+	if (tmp2->tube == NULL)
+		if (!(tmp2->tube = ft_init_tube(tmp2->tube)))
+			return (0);
 	if (!ft_link1(tmp->tube, tmp2) || !ft_link2(tmp2->tube, tmp))
 		return (0);
 	return (1);
@@ -91,13 +97,13 @@ int				ft_add_link(char *text, t_room *room)
 	char	*tmp2;
 	t_room	*tmp;
 	int		i;
+
 	if (!ft_tmp(&tmp1, &tmp2, text))
 		return (0);
 	i = 0;
 	tmp = room;
 	while (tmp)
 	{
-		//ft_printf("tmp1 = %s, tmp->name = %s\n", tmp1, tmp->name);
 		if (!ft_strcmp(tmp1, tmp->name) || !ft_strcmp(tmp2, tmp->name))
 			i++;
 		tmp = tmp->next;

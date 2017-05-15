@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:18:33 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/11 18:20:08 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/15 18:38:42 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ void		ft_print_way(t_way *way)
 	t_way	*tmp;
 
 	tmp = way;
-	while(way)
+	while (way)
 	{
 		ft_printf("%s", way->p->name);
 		if (way->p->pos != 2)
 			ft_printf("->");
 		way = way->next;
 	}
+	ft_printf("\n");
 	way = tmp;
 }

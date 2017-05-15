@@ -6,7 +6,7 @@
 #    By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/13 16:44:11 by tferrari          #+#    #+#              #
-#    Updated: 2017/05/11 19:48:43 by tferrari         ###   ########.fr        #
+#    Updated: 2017/05/12 14:49:32 by tferrari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC_DIR = src
 
 SRC_FILE =	lem_in.c ft_parse.c ft_check_parse.c ft_room.c ft_lstnewroom.c \
 			ft_print_lst.c ft_add_link.c ft_theway.c ft_way_ants.c \
-			ft_print_ants.c
+			ft_print_ants.c ft_bonus.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILE))
 

@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:10:05 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/11 18:25:15 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/15 18:39:39 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 t_way				*ft_init_way(void)
 {
-	t_way *way;
+	t_way	*way;
 
 	if (!(way = (t_way *)malloc(sizeof(t_way))))
 		return (NULL);
@@ -44,7 +44,7 @@ static int			ft_add(t_room *room, t_way *way)
 	return (1);
 }
 
-int				ft_way_ants(t_room *room, t_way *way)
+int					ft_way_ants(t_room *room, t_way *way)
 {
 	while (room && room->pos != 1)
 		room = room->next;

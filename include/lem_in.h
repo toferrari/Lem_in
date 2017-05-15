@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:19:18 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/11 19:49:45 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/12 14:50:50 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ int				ft_theway(t_room *room);
 t_way			*ft_init_way();
 int				ft_way_ants(t_room *room, t_way *way);
 void			ft_print_ants(t_way *way, t_lem *lem);
+void			ft_print_way(t_way *way);
 
 #endif

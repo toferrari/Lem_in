@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:18:10 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/11 19:49:21 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/15 19:28:54 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static int		ft_error(int i)
 	else if (i == 2)
 		ft_putendl("Error link");
 	else if (i == 3)
-		ft_putendl("Error room3");
+		ft_putendl("Error room");
 	else if (i == 4)
-		ft_putendl("Error room4");
+		ft_putendl("Error room");
 	else if (i == 6)
 		ft_putendl("No way");
 	return (0);
@@ -52,13 +52,15 @@ int				main(int argc, char **argv)
 			break ;
 		}
 		else
-			ft_printf("%s : est une bonne saisie\n", lem.order);
+			ft_printf("%s\n", lem.order);
 		ft_memdel((void **)&lem.order);
 	}
 	if (!ft_theway(room))
 		return (ft_error(6));
 	ft_way_ants(room, way);
+	ft_print_way(way);
 	ft_print_ants(way, &lem);
 	//  ft_printroom(room);
+	ft_printf("\n\n\n%d", argc);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 19:37:12 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/11 10:47:45 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/15 18:02:24 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ t_room			*ft_init_room(void)
 {
 	t_room *room;
 
-	if (!(room = (t_room *)malloc(sizeof(t_room))) ||
-	(!(room->tube = ft_init_tube(room->tube))))
+	if (!(room = (t_room *)malloc(sizeof(t_room))))
 		return (NULL);
 	room->name = NULL;
 	room->pos = 0;
 	room->way = 0;
+	room->tube = NULL;
 	room->ant = 0;
 	room->next = NULL;
 	room->first_tube = NULL;
@@ -50,8 +50,7 @@ int				ft_lstnewroom(t_room *room, char *name, t_lem *lem)
 			return (0);
 		room = room->next;
 	}
-	if (!(room->name = ft_strnew(ft_strlen(name))) ||
-	(!(room->tube = ft_init_tube(room->tube))))
+	if (!(room->name = ft_strnew(ft_strlen(name))))
 		return (0);
 	room->name = ft_strcpy(room->name, name);
 	if (lem->start == 2)
@@ -62,6 +61,7 @@ int				ft_lstnewroom(t_room *room, char *name, t_lem *lem)
 		room->pos = 0;
 	room->way = 0;
 	room->ant = 0;
+	room->tube = NULL;
 	room->next = NULL;
 	room->first_tube = NULL;
 	return (1);

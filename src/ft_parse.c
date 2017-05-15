@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 16:13:02 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/10 17:59:04 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/15 19:26:13 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,21 @@ static int	ft_ants(char *text, t_lem *lem)
 	int i;
 
 	i = -1;
+	if (text[0] == '#' && text[1] != '#')
+		return (1);
 	while (text[++i])
 		if (!ft_isdigit(text[i]))
 			return (0);
 	lem->ants = ft_atoi(text);
 	lem->check++;
-	return ((lem->ants == 0) ? 0 : 1);
+	return ((lem->ants < 1) ? 0 : 1);
 }
 
 static int	ft_instruction(char *text, t_lem *lem)
 {
-	if (lem->start == 1 || lem->end == 1)
-		return (2);
+	if ((ft_strstr(text, "start") && ft_strlen(text) == 5 && lem->start > 0) ||
+	(ft_strstr(text, "end") && ft_strlen(text) == 3 && lem->end > 0))
+		return (3);
 	if (ft_strstr(text, "start") && ft_strlen(text) == 5 && lem->start == 0)
 		lem->start = 1;
 	else if (ft_strstr(text, "end") && ft_strlen(text) == 3 && lem->end == 0)
