@@ -1,49 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus.c                                         :+:      :+:    :+:   */
+/*   ft_ants.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/11 18:18:33 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/17 12:11:04 by tferrari         ###   ########.fr       */
+/*   Created: 2017/05/17 15:32:11 by tferrari          #+#    #+#             */
+/*   Updated: 2017/05/17 15:40:48 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "libft.h"
 #include "ft_printf.h"
+#define RESET "\033[0m"
 
-void		ft_color(t_way *tmp)
+void			ft_print(t_way *way, t_lem *lem)
 {
-	ft_putstr("\e[38;5;");
-	ft_putnbr(tmp->p->ant % 255);
-	ft_putchar('m');
-}
+	t_way	*tmp;
 
-void		ft_print_way(t_way *way)
-{
-	while (way)
+	tmp = way->next;
+	while (tmp)
 	{
-		ft_printf("%s", way->p->name);
-		if (way->p->pos != 2)
-			ft_printf("->");
-		way = way->next;
+		if (tmp->p->ant > 0)
+		{
+			if (lem->b_color == 1)
+				ft_color(tmp);
+			ft_printf("L%d-%s ", tmp->p->ant, tmp->p->name);
+			ft_putstr(RESET);
+		}
+		tmp = tmp->next;
 	}
-	ft_printf("\n\n");
-}
-
-void		ft_bonus(int argc, char **argv, t_lem *lem)
-{
-	int i;
-
-	i = 1;
-	while (i < argc)
-	{
-		if (!ft_strcmp(argv[i], "-w"))
-			lem->b_way = 1;
-		if (!ft_strcmp(argv[i], "-c"))
-			lem->b_color = 1;
-		i++;
-	}
+	ft_printf("\n");
 }

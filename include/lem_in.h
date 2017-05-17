@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:19:18 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/12 14:50:50 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/17 15:40:55 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ typedef	struct	s_lem
 	char		*order;
 	int			ret;
 	int			parse;
+	int			b_way;
+	int			b_color;
+	int			nb;
+	int			room;
 }				t_lem;
 
 typedef struct		s_room
@@ -62,8 +66,11 @@ int				ft_room(char *text, t_lem *lem, t_room *room);
 int				ft_add_link(char *text, t_room *room);
 int				ft_theway(t_room *room);
 t_way			*ft_init_way();
-int				ft_way_ants(t_room *room, t_way *way);
+int				ft_way_ants(t_room *room, t_way *way, t_lem *lem);
 void			ft_print_ants(t_way *way, t_lem *lem);
+void			ft_bonus(int argc, char **argv, t_lem *lem);
 void			ft_print_way(t_way *way);
+void			ft_color(t_way *way);
+void			ft_print(t_way *way, t_lem *lem);
 
 #endif

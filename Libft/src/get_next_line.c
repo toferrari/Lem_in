@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 15:50:45 by tferrari          #+#    #+#             */
-/*   Updated: 2017/03/11 13:20:44 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/16 13:16:44 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	*ft_fill_line(char **line, char **str, char *rest)
 	}
 	else
 	{
+		ft_memdel((void **)&rest);
 		if (!(rest = ft_strdup(*str + i)))
 			return (NULL);
 	}

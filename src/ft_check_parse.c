@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 14:47:54 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/01 17:48:19 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/16 15:26:19 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ static void		ft_link(char *text, t_lem *lem)
 			i++;
 		compt++;
 		if (text[i] != '-' && text[i])
-			lem->check = 3;
+			lem->check = 7;
 		if (text[i])
 			i++;
 	}
 	if (compt != 2)
-		lem->check = 3;
+		lem->check = 7;
 }
 
 static void		ft_command(t_lem *lem)

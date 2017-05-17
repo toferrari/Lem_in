@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 10:59:05 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/15 16:58:51 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/17 15:52:17 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-static void		ft_print(t_way *way)
+static void		ft_2room(t_way *way, t_lem *lem)
 {
-	t_way	*tmp;
+	t_way *tmp;
 
-	tmp = way->next;
-	while (tmp)
+	tmp = way;
+	if (tmp->next->p->pos == 2)
+		lem->room = 1;
+	if (lem->room == 1)
 	{
-		if (tmp->p->ant > 0)
-			ft_printf("L%d-%s ", tmp->p->ant, tmp->p->name);
-		tmp = tmp->next;
+		while (tmp->next->p->ant < lem->ants)
+		{
+			tmp->next->p->ant++;
+			ft_print(way, lem);
+		}
 	}
-	ft_printf("\n");
 }
 
 static void		ft_check_end(t_way *way, t_lem *lem)
@@ -65,28 +68,28 @@ static void		ft_ants(t_way *way, t_lem *lem, int *nb)
 void			ft_print_ants(t_way *way, t_lem *lem)
 {
 	t_way	*begin;
-	int		nb;
 
 	begin = way;
-	nb = 1;
+	lem->nb = 1;
 	way->p->ant = lem->ants;
-	while (lem->ants_end < lem->ants)
+	ft_2room(way, lem);
+	while (lem->ants_end < lem->ants && lem->room == 0)
 	{
 		if (lem->ant_start <= lem->ants)
 			lem->ant_start++;
-		nb = lem->ant_start;
+		lem->nb = lem->ant_start;
 		while (way)
 		{
 			if (way->p->pos == 1 && way->p->ant > 0)
-				way = ft_room_start(way, &nb);
+				way = ft_room_start(way, &lem->nb);
 			else if (way->p->pos == 1)
 				while (way && way->p->ant != lem->ants)
 					way = way->next;
-			ft_ants(way, lem, &nb);
+			ft_ants(way, lem, &lem->nb);
 			way = way->next;
 		}
 		way = begin;
-		ft_print(way);
+		ft_print(way, lem);
 		ft_check_end(way, lem);
 	}
 }

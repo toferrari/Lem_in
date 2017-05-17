@@ -6,7 +6,7 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 18:15:32 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/15 18:39:09 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/16 18:57:48 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int				ft_add_link(char *text, t_room *room)
 	int		i;
 
 	if (!ft_tmp(&tmp1, &tmp2, text))
-		return (0);
+		return (7);
 	i = 0;
 	tmp = room;
 	while (tmp)
@@ -109,7 +109,7 @@ int				ft_add_link(char *text, t_room *room)
 		tmp = tmp->next;
 	}
 	if (i != 2)
-		return (2);
+		return (7);
 	if (!ft_lst_link(tmp1, tmp2, room))
 		return (0);
 	if (tmp1)
