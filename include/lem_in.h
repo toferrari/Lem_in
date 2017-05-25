@@ -6,30 +6,30 @@
 /*   By: tferrari <tferrari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 14:19:18 by tferrari          #+#    #+#             */
-/*   Updated: 2017/05/17 15:40:55 by tferrari         ###   ########.fr       */
+/*   Updated: 2017/05/17 19:34:50 by tferrari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-typedef	struct	s_lem
+typedef	struct		s_lem
 {
-	int			ants;
-	int			ant_start;
-	int			ants_end;
-	int			start;
-	int			end;
-	int			line;
-	int			check;
-	char		*order;
-	int			ret;
-	int			parse;
-	int			b_way;
-	int			b_color;
-	int			nb;
-	int			room;
-}				t_lem;
+	int				ants;
+	int				ant_start;
+	int				ants_end;
+	int				start;
+	int				end;
+	int				line;
+	int				check;
+	char			*order;
+	int				ret;
+	int				parse;
+	int				b_way;
+	int				b_color;
+	int				nb;
+	int				room;
+}					t_lem;
 
 typedef struct		s_room
 {
@@ -55,22 +55,22 @@ typedef struct		s_way
 	struct s_way	*next;
 }					t_way;
 
-int				ft_parse(char *text, t_lem *lem, t_room *room);
-void			ft_check_parse(char * test, t_lem *lem);
-t_room			*ft_init_room();
-t_tube			*ft_init_tube(t_tube *tube);
-int				ft_lstnewroom(t_room *room, char *name, t_lem *lem);
-void			ft_printroom(t_room *room);
-void			ft_printlink(t_room *room);
-int				ft_room(char *text, t_lem *lem, t_room *room);
-int				ft_add_link(char *text, t_room *room);
-int				ft_theway(t_room *room);
-t_way			*ft_init_way();
-int				ft_way_ants(t_room *room, t_way *way, t_lem *lem);
-void			ft_print_ants(t_way *way, t_lem *lem);
-void			ft_bonus(int argc, char **argv, t_lem *lem);
-void			ft_print_way(t_way *way);
-void			ft_color(t_way *way);
-void			ft_print(t_way *way, t_lem *lem);
+int					ft_parse(char *text, t_lem *lem, t_room *room);
+void				ft_check_parse(char *test, t_lem *lem);
+t_room				*ft_init_room();
+t_tube				*ft_init_tube(t_tube *tube);
+int					ft_lstnewroom(t_room *room, char *name, t_lem *lem);
+void				ft_printroom(t_room *room);
+void				ft_printlink(t_room *room);
+int					ft_room(char *text, t_lem *lem, t_room *room);
+int					ft_add_link(char *text, t_room *room);
+int					ft_theway(t_room *room);
+t_way				*ft_init_way();
+int					ft_way_ants(t_room *room, t_way *way, t_lem *lem);
+void				ft_print_ants(t_way *way, t_lem *lem);
+void				ft_bonus(int argc, char **argv, t_lem *lem);
+void				ft_print_way(t_way *way);
+void				ft_color(t_way *way);
+void				ft_print(t_way *way, t_lem *lem);
 
 #endif
